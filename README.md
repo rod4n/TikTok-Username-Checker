@@ -20,4 +20,6 @@ py main.py
 
 Watch the youtube video below, and if that doesn't fix your problem then create a issue.
 
-(yt video coming soon)
+(Click the image below)
+
+[<img src="https://img.youtube.com/vi/4YoTZvYlp18/maxresdefault.jpg" width="100%">](https://youtu.be/4YoTZvYlp18)
