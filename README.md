@@ -6,7 +6,7 @@ A free and open-source TikTok username checker that efficiently uses the threadi
 
 Depending on your python installation your commands may vary. 
 Below are the commands you should run before execution.
-
+If the checker isn't checking properly then try using a vpn. (captchas are easily triggered)
 The script was tested in python 3.8.6, using windows.
 
 ```
