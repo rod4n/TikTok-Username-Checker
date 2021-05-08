@@ -5,9 +5,29 @@ import threading
 import time
 from colorama import Fore, init
 import random
+from discord_webhook import DiscordWebhook
+
+def start():
+	pass
 
 init()
 
+os.system('cls')
+global webhookk
+webhookk = ""
+webhookk = input("Webhook: ")
+if webhookk == "":
+	print("The value you entered was null. Please try again.")
+	os.system("PAUSE")
+	start()
+elif webhookk == " ":
+	print("The value you entered was null. Please try again.")
+	os.system("PAUSE")
+	start()
+
+available = 0
+taken = 0 
+total = 0
 errorCodes = [100, 101, 103, 201, 202, 203, 204, 205, 206, 300, 301, 302, 303, 304, 307, 308, 400, 401, 402, 403, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 422, 425, 426, 428, 431, 451, 500, 501, 502, 503, 504, 505, 506, 507, 508, 510, 511]
 
 def getProxy():
@@ -33,6 +53,8 @@ def getProxy():
 		proxList2.append(line)
 
 def main():
+	os.system('cls')
+	print(Fore.YELLOW + "[!] Some usernames may show has available but are actually banned.\nIf you are having issues with the checker try using restarting the script to get new proxies.")
 	getProxy()
 	with open("usernames.txt", "r") as f:
 		global line
@@ -72,8 +94,13 @@ def checkUsername():
 		total += 1
 		ctypes.windll.kernel32.SetConsoleTitleW("TikTok Username Checker | arshan.xyz | Available: " + str(available) +  " Taken: " + str(taken) + " Total: " + str(total))
 		print(Fore.GREEN + f"[+] Username '{username}' is available.")
-		with open("available.txt", "a") as a:
-			a.writelines(username + "\n")
+		webhook = DiscordWebhook(url=webhookk, content=f"[!] Available TikTok Username: {username}")
+		try:
+			response = webhook.execute()
+		except Exception:
+			print(Fore.YELLOW + "Invalid Webhook URL, saving invite to available.txt")
+			with open("available.txt", "a") as f:
+				f.writelines(username + "\n")
 	elif tiktokRequest.status_code == 429:
 		total += 1
 		ctypes.windll.kernel32.SetConsoleTitleW("TikTok Username Checker | arshan.xyz | Available: " + str(available) +  " Taken: " + str(taken) + " Total: " + str(total))
@@ -83,10 +110,10 @@ def checkUsername():
 		ctypes.windll.kernel32.SetConsoleTitleW("TikTok Username Checker | arshan.xyz | Available: " + str(available) +  " Taken: " + str(taken) + " Total: " + str(total))
 		print(Fore.YELLOW + "[!] An unexpected error has occured. Error Code: " + str(tiktokRequest.status_code))
 
-if __name__ == "__main__":
-	available = 0
-	taken = 0 
-	total = 0
+def menu():
 	ctypes.windll.kernel32.SetConsoleTitleW("TikTok Username Checker | arshan.xyz | Available: " + str(available) +  " Taken: " + str(taken) + " Total: " + str(total))
-	print(Fore.YELLOW + "[!] Some usernames may show has available but are actually banned.\nIf you are having issues with the checker try using restarting the script to get new proxies.")
 	main()
+
+if __name__ == "__main__":
+	menu()
+	
