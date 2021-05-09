@@ -2,6 +2,12 @@
 
 A free and open-source TikTok username checker that efficiently uses the threading and requests module.
 
+## Features
+
+- Auto scrapes proxies
+- uses proxies in requests
+- uses threading to increase the speed of the checking process
+
 ## Usage
 
 Depending on your python installation your commands may vary. 
